@@ -1,0 +1,7 @@
+{
+  "name": "Derive",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
