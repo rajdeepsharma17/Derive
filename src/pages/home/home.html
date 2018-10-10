@@ -1,14 +1,53 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<!-- User would come here after logged in -->
+<!-- Tab Component for naviagting to respective page -->
+<!-- <ion-tabs color="dark">
+  <ion-tab tabIcon="contact" [root]="dashboard"></ion-tab>
+  <ion-tab tabIcon="compass"  [root]="discover"></ion-tab>
+  <ion-tab tabIcon="calendar" [root]="calendar"></ion-tab>
+  <ion-tab tabIcon="clipboard" tabBadge="2" [root]="assignments"></ion-tab>
+  <ion-tab tabIcon="chatbubbles" tabBadge="3" [root]="forums"></ion-tab>
+</ion-tabs>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+<ion-menu [content]="mycontent">
+  <ion-content>
+    <ion-list>
+      <p>some menu content, could be list items</p>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav> -->
+
+<div padding>
+  <ion-segment [(ngModel)]="pet">
+    <ion-segment-button value="kittens">
+      Kittens
+    </ion-segment-button>
+    <ion-segment-button value="puppies">
+      Puppies
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
+<div [ngSwitch]="pet">
+  <ion-list *ngSwitchCase="'puppies'">
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="img/thumbnail-puppy-1.jpg">
+      </ion-thumbnail>
+      <h2>Ruby</h2>
+    </ion-item>
+    ...
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'kittens'">
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="img/thumbnail-kitten-1.jpg">
+      </ion-thumbnail>
+      <h2>Luna</h2>
+    </ion-item>
+    ...
+  </ion-list>
+</div>
+
