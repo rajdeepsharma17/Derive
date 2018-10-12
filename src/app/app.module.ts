@@ -6,14 +6,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ForumsPage } from '../pages/forums/forums'
 import { DashBoardPage } from '../pages/dash-board/dash-board'
 import { CalendarPage } from '../pages/calendar/calendar'
 import { DiscoverPage } from '../pages/discover/discover'
 import { SettingsPage } from '../pages/settings/settings'
-import { AssignmentsPage } from '../pages/assignments/assignments'
-import { UserloginPage } from '../pages/userlogin/userlogin'
-import { UserSignUpPage } from '../pages/user-sign-up/user-sign-up'
 import { IntroPage } from '../pages/intro/intro';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { AngularFireModule } from 'angularfire2';
@@ -34,14 +30,10 @@ firbase.initializeApp(firebaseConfig);
   declarations: [
     MyApp,
     HomePage,
-    ForumsPage,
     DashBoardPage,
     CalendarPage,
     DiscoverPage,
     SettingsPage,
-    AssignmentsPage,
-    UserloginPage,
-    UserSignUpPage,
     IntroPage
   ],
   imports: [
@@ -53,14 +45,10 @@ firbase.initializeApp(firebaseConfig);
   entryComponents: [
     MyApp,
     HomePage,
-    ForumsPage,
     DashBoardPage,
     CalendarPage,
     DiscoverPage,
     SettingsPage,
-    AssignmentsPage,
-    UserloginPage,
-    UserSignUpPage,
     IntroPage
   ],
   providers: [

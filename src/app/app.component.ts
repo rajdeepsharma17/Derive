@@ -3,7 +3,6 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IntroPage } from '../pages/intro/intro';
-import { UserSignUpPage } from '../pages/user-sign-up/user-sign-up';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { GooglePlus } from '@ionic-native/google-plus';
 import firbase from 'firebase';
@@ -27,27 +26,29 @@ export class MyApp {
     statusBar.backgroundColorByHexString('#ffffff');
 
     platform.ready().then(() => {
-      this.nativeStorage.getItem('user')
-      .then((data)=> {
-        this.rootPage = HomePage;
-        splashScreen.hide();
-      },(error)=> {
-        this.GoogleLogin();
-      });
+      // this.nativeStorage.getItem('user')
+      // .then((data)=> {
+      //   this.rootPage = HomePage;
+      //   splashScreen.hide();
+      // },(error)=> {
+      //   this.GoogleLogin();
+      // });
+      this.startApp();
       statusBar.styleDefault();
+      splashScreen.hide();
     });
   }
 
   startApp(){
     if(this.ifUserSignedIn()){
-      this.rootPage = UserSignUpPage;
+      this.rootPage = HomePage;
     }else{
       this.rootPage = IntroPage;
     }
   }
   // To be modified in future, for now returning static value
   ifUserSignedIn(){
-    return true;
+    return false;
   }
 
   GoogleLogin(){

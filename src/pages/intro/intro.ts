@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { UserSignUpPage } from '../user-sign-up/user-sign-up';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the IntroPage page.
@@ -39,7 +39,7 @@ export class IntroPage {
   }
 
   startApp() {
-    this.navCtrl.setRoot(UserSignUpPage, {}, {
+    this.navCtrl.setRoot(HomePage, {}, {
       animate: true,
       direction: 'forward'
     });
