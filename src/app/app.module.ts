@@ -15,6 +15,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { AngularFireModule } from 'angularfire2';
 import firbase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxesZjFy_sGzQMthXBB3vnHNOqrlegBDE",
@@ -58,7 +59,8 @@ firbase.initializeApp(firebaseConfig);
     NativeStorage,
     AngularFireAuth,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GooglePlus
+    GooglePlus,
+    AuthServiceProvider
   ]
 })
 export class AppModule {}
