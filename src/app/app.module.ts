@@ -14,6 +14,7 @@ import { IntroPage } from '../pages/intro/intro';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { AngularFireModule } from 'angularfire2';
 import firbase from 'firebase';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxesZjFy_sGzQMthXBB3vnHNOqrlegBDE",
@@ -55,6 +56,7 @@ firbase.initializeApp(firebaseConfig);
     StatusBar,
     SplashScreen,
     NativeStorage,
+    AngularFireAuth,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GooglePlus
   ]

@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>Dérive</ion-title>
     <ion-buttons end *ngIf="showSkip">
-      <button ion-button (click)="startApp()" color="primary">{{ 'Skip' }}</button>
+      <button ion-button (click)="googleLogin()" color="primary">{{ 'Skip' }}</button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -17,7 +17,7 @@
     <ion-slide>
       <img src="assets/imgs/ica-slidebox-img-4.png" class="slide-image" />
       <h2 class="slide-title">{{ 'Sign Up to Get Started'  }}</h2>
-      <button ion-button icon-end large clear (click)="startApp()">
+      <button ion-button icon-end large clear (click)="googleLogin()">
         {{ 'Sign in With Google'  }}
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
