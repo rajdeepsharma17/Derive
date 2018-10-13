@@ -6,10 +6,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { DashBoardPage } from '../pages/dash-board/dash-board'
-import { CalendarPage } from '../pages/calendar/calendar'
-import { DiscoverPage } from '../pages/discover/discover'
-import { SettingsPage } from '../pages/settings/settings'
 import { IntroPage } from '../pages/intro/intro';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { AngularFireModule } from 'angularfire2';
@@ -17,6 +13,7 @@ import firbase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { PostPage } from '../pages/post/post';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxesZjFy_sGzQMthXBB3vnHNOqrlegBDE",
@@ -33,11 +30,8 @@ firbase.initializeApp(firebaseConfig);
   declarations: [
     MyApp,
     HomePage,
-    DashBoardPage,
-    CalendarPage,
-    DiscoverPage,
-    SettingsPage,
-    IntroPage
+    IntroPage,
+    PostPage
   ],
   imports: [
     BrowserModule,
@@ -49,11 +43,8 @@ firbase.initializeApp(firebaseConfig);
   entryComponents: [
     MyApp,
     HomePage,
-    DashBoardPage,
-    CalendarPage,
-    DiscoverPage,
-    SettingsPage,
-    IntroPage
+    IntroPage,
+    PostPage
   ],
   providers: [
     StatusBar,

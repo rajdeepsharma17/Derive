@@ -1,38 +1,34 @@
-<ion-toolbar>
-    <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
-      <ion-segment-button value="following">
-        Following
-      </ion-segment-button>
-      <ion-segment-button value="posts">
-        Posts
-      </ion-segment-button>
-      <ion-segment-button value="chats">
-        Messages
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-  
-  <ion-content padding>
-  
-    <ion-slides #mySlider (ionSlideDidChange)="onSlideChanged($event)">
-      <ion-slide *ngFor="let slide of slides">
-          <ion-list *ngIf="slide.id == 'following'">
-            <p>{{slide.title}}</p>
-          </ion-list>
-          <ion-list *ngIf="slide.id == 'posts'">
-            <p>{{slide.title}}</p>
-          </ion-list>
-          <ion-list *ngIf="slide.id == 'chats'">
-            <p>{{slide.title}}</p>
-          </ion-list>
-      </ion-slide>
-    </ion-slides>
-  
-  </ion-content>
-  
-  <style>
-    ion-scroll {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
+<ion-header>
+  <ion-navbar>
+    <ion-title>Dickso</ion-title>
+    <div padding>
+      <ion-segment [(ngModel)]="main">
+        <ion-segment-button value="following">
+          Following
+        </ion-segment-button>
+        <ion-segment-button value="posts">
+          Posts
+        </ion-segment-button>
+        <ion-segment-button value="chats">
+          Messages
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="main">
+    <ng-container *ngSwitchCase="'following'">
+      <page-post></page-post>
+    </ng-container>
+    <div *ngSwitchCase="'posts'">
+      <!-- <page-post></page-post> -->
+      <p>2</p>
+    </div>
+    <div *ngSwitchCase="'chats'">
+      <!-- <page-post></page-post> -->
+      <p>3</p>
+    </div>
+  </div>
+</ion-content>
