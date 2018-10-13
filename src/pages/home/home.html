@@ -1,131 +1,38 @@
-<!-- User would come here after logged in -->
-<!-- Tab Component for naviagting to respective page -->
-<ion-header>
-  <ion-toolbar>
-    <ion-title style="margin-bottom:20px">Header</ion-title>
-    <ion-segment [(ngModel)]="icons" color="secondary">
-      <ion-segment-button value="camera">
-        <ion-icon name="camera"></ion-icon>
+<ion-toolbar>
+    <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
+      <ion-segment-button value="following">
+        Following
       </ion-segment-button>
-      <ion-segment-button value="bookmark">
-        <ion-icon name="bookmark"></ion-icon>
+      <ion-segment-button value="posts">
+        Posts
+      </ion-segment-button>
+      <ion-segment-button value="chats">
+        Messages
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-card>
-        <img src="../../assets/imgs/advance-card-map-madison.png">
-        <ion-fab right top>
-          <button ion-fab>
-            <ion-icon name="pin"></ion-icon>
-          </button>
-        </ion-fab>
-
-        <ion-item>
-          <ion-icon name="bicycle" item-start large></ion-icon>
-          <h2>Phase3</h2>
-          <p>Posted By: Raj</p>
-        </ion-item>
-
-        <ion-item>
-          <ion-icon name="timer" item-start large></ion-icon>
-          <h2>Date: 15 Oct 2018</h2>
-          <p>1 Seat Available</p>
-        </ion-item>
-
-        <ion-item>
-            <button ion-button icon-start clear item-end>
-              <ion-icon name="list-box"></ion-icon>
-                Details
-            </button>
-          <button ion-button icon-start clear item-end>
-            <ion-icon name="call"></ion-icon>
-            Contact
-          </button>
-        </ion-item>
-      </ion-card>
-      <ion-card>
-          <img src="../../assets/imgs/advance-card-map-madison.png">
-          <ion-fab right top>
-            <button ion-fab>
-              <ion-icon name="pin"></ion-icon>
-            </button>
-          </ion-fab>
   
-          <ion-item>
-            <ion-icon name="walk" item-start large></ion-icon>
-            <h2>Udhyog Vihar</h2>
-            <p>Posted By: Prashant</p>
-          </ion-item>
+  <ion-content padding>
   
-          <ion-item>
-            <ion-icon name="timer" item-start large></ion-icon>
-            <h2>Date: 17 Oct 2018</h2>
-            <p></p>
-          </ion-item>
+    <ion-slides #mySlider (ionSlideDidChange)="onSlideChanged($event)">
+      <ion-slide *ngFor="let slide of slides">
+          <ion-list *ngIf="slide.id == 'following'">
+            <p>{{slide.title}}</p>
+          </ion-list>
+          <ion-list *ngIf="slide.id == 'posts'">
+            <p>{{slide.title}}</p>
+          </ion-list>
+          <ion-list *ngIf="slide.id == 'chats'">
+            <p>{{slide.title}}</p>
+          </ion-list>
+      </ion-slide>
+    </ion-slides>
   
-          <ion-item>
-              <button ion-button icon-start clear item-start>
-                <ion-icon name="list-box"></ion-icon>
-                  Details
-              </button>
-            <button ion-button icon-start clear item-end>
-              <ion-icon name="call"></ion-icon>
-                Contact
-            </button>
-          </ion-item>
-        </ion-card>
-        <ion-card>
-            <img src="../../assets/imgs/advance-card-map-madison.png">
-            <ion-fab right top>
-              <button ion-fab>
-                <ion-icon name="pin"></ion-icon>
-              </button>
-            </ion-fab>
-    
-            <ion-item>
-              <ion-icon name="car" item-start large></ion-icon>
-              <h2>Andhra Pradesh</h2>
-              <p>Posted By: Teja</p>
-            </ion-item>
-    
-            <ion-item>
-              <ion-icon name="timer" item-start large></ion-icon>
-              <h2>Open Indefinitely</h2>
-              <p>3 Seat Available</p>
-            </ion-item>
-    
-            <ion-item>
-                <button ion-button icon-start clear item-end>
-                  <ion-icon name="list-box"></ion-icon>
-                    Details
-                </button>
-              <button ion-button icon-start clear item-end>
-                <ion-icon name="call"></ion-icon>
-                Contact
-              </button>
-            </ion-item>
-          </ion-card>
-    </ion-item>
-  </ion-list>
-</ion-content>
-
-<ion-menu [content]="mycontent">
-  <ion-content>
-    <ion-list>
-      <p>some menu content, could be list items</p>
-    </ion-list>
-    <ion-list>
-      <button (click)="signOut()" ion-button icon-start clear item-end>
-        <ion-icon name="list-box"></ion-icon>
-          Sign Out
-      </button>
-    </ion-list>
   </ion-content>
-</ion-menu>
-
-<ion-nav #mycontent [root]="rootPage"></ion-nav>
+  
+  <style>
+    ion-scroll {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
