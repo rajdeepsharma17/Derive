@@ -24,4 +24,8 @@ export class HomePage {
     this.calendar = CalendarPage;
     this.discover = DiscoverPage;
   }
+
+  signOut(){
+    this.nativeStorage.remove('user');
+  }
 }

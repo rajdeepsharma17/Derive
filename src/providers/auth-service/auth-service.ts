@@ -4,6 +4,8 @@ import { Platform } from 'ionic-angular';
 import firebase from 'firebase';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
 
 /*
   Generated class for the AuthServiceProvider provider.
@@ -13,15 +15,22 @@ import { AngularFireAuth } from '@angular/fire/auth';
 */
 @Injectable()
 export class AuthServiceProvider {
-
+  users: Observable<any>;
+  usersCollection: AngularFirestoreCollection<any>;
   constructor(
     private afAuth: AngularFireAuth,
     private gplus: GooglePlus,
     private platform: Platform,
     private nativeStorage: NativeStorage,
-  ) {
-    console.log('Hello AuthServiceProvider Provider');
+    private afs: AngularFirestore ) {
+      this.usersCollection = this.afs.collection("users");
+      console.log(this.usersCollection);
+      this.users = this.usersCollection.valueChanges();
   }
+
+  ionViewWillEnter() {
+    
+ }
 
   async nativeGoogleLogin() {
     try {
@@ -36,7 +45,23 @@ export class AuthServiceProvider {
           email: user.email,
           picture: user.imageUrl
         });
-        this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken))
+        this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken));
+        let db = firebase.firestore();
+        db.collection("users").add({
+          id: user.uid,
+          name: user.displayName,
+          email: user.email,
+          phone: user.phoneNumber,
+          image: user.photoURL,
+          preferences: [],
+          department: "",
+          circle: "",
+        }).then((data)=>{
+          alert("Done")
+        }).catch((err)=>{
+          console.log(err)
+          alert(err)
+        });
       });  
     } catch(err) {
       console.log(err)
@@ -46,7 +71,22 @@ export class AuthServiceProvider {
   async webGoogleLogin(): Promise<void> {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
-      await this.afAuth.auth.signInWithPopup(provider);
+      let credentials = await this.afAuth.auth.signInWithPopup(provider);
+      let user = credentials.user;
+      this.usersCollection.add({
+        id: user.uid,
+        name: user.displayName,
+        email: user.email,
+        phone: user.phoneNumber,
+        image: user.photoURL,
+        preferences: [],
+        department: "",
+        circle: "",
+      }).then((data)=>{
+        console.log(data)
+      }).catch((err)=>{
+        console.log(err)
+      });
     } catch(err) {
       console.log(err)
     }

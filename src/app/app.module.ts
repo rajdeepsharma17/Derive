@@ -16,6 +16,7 @@ import { AngularFireModule } from 'angularfire2';
 import firbase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxesZjFy_sGzQMthXBB3vnHNOqrlegBDE",
@@ -41,7 +42,8 @@ firbase.initializeApp(firebaseConfig);
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule.enablePersistence()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
