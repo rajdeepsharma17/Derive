@@ -34,23 +34,22 @@ export class AuthServiceProvider {
 
   async nativeGoogleLogin() {
     try {
-      await this.gplus.login({
+      let user = await this.gplus.login({
         'webClientId': '46695463328-5bl5gr5jgr1did2vq3im8sv8jqlp0sq2.apps.googleusercontent.com',
         'offline': true,
-      })
-      .then((user)=> {
-        this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken))
-          .then((userx) => {
-            this.nativeStorage.setItem('user', {
-              uid: userx.uid,
-              name: userx.displayName,
-              email: userx.email,
-              image: userx.photoURL,
-            });
-
-            this.RegisterUser(userx);
-          });
       });
+
+      let userx = await this.afAuth.auth
+        .signInWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken));
+      
+      await this.nativeStorage.setItem('user', {
+        uid: userx.uid,
+        name: userx.displayName,
+        email: userx.email,
+        image: userx.photoURL,
+      });
+
+      await this.registerUser(userx);
     } catch(err) {
       console.log(err)
     }
@@ -61,7 +60,8 @@ export class AuthServiceProvider {
       const provider = new firebase.auth.GoogleAuthProvider();
       let credentials = await this.afAuth.auth.signInWithPopup(provider);
       let user = credentials.user;
-      this.RegisterUser(user);
+
+      await this.registerUser(user);
     } catch(err) {
       console.log(err)
     }
@@ -69,9 +69,9 @@ export class AuthServiceProvider {
 
   async googleLogin() {
     if (this.platform.is('cordova')) {
-      this.nativeGoogleLogin();
+      await this.nativeGoogleLogin();
     } else {
-      this.webGoogleLogin();
+      await this.webGoogleLogin();
     }
   }
   
@@ -80,9 +80,8 @@ export class AuthServiceProvider {
     this.afAuth.auth.signOut();
   }
 
-  RegisterUser(user){
-    console.log(user);
-    this.usersCollection.add({
+  async registerUser(user){
+    await this.usersCollection.add({
       id: user.uid,
       name: user.displayName,
       email: user.email,
@@ -92,10 +91,6 @@ export class AuthServiceProvider {
       preferences: [],
       department: "",
       circle: "",
-    }).then((data)=>{
-      console.log(data)
-    }).catch((err)=>{
-      console.log(err)
     });
   }
 }

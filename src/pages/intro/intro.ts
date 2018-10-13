@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Loading } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the IntroPage page.
@@ -43,7 +44,8 @@ export class IntroPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private afAuth: AngularFireAuth,
-    public authService: AuthServiceProvider) {
+    public authService: AuthServiceProvider,
+    public loadingCtrl: LoadingController) {
       this.user = this.afAuth.authState;
   }
 
@@ -63,9 +65,17 @@ export class IntroPage {
   }
 
   googleLogin() {
-    this.authService.googleLogin().then(()=>{
-      this.startApp();
+    let loading = this.loadingCtrl.create({
+      content: 'Logging In',
     });
+
+    loading.present();
+
+    this.authService.googleLogin()
+      .then(() => {
+        loading.dismiss();
+        this.startApp();
+      });
   }
   
 
