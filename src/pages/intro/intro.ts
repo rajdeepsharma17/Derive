@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Loading } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -26,18 +26,23 @@ export class IntroPage {
   slides = [
     {
       title: "Welcome to Dérive",
-      description: "Description",
-      image: 'assets/imgs/ica-slidebox-img-1.png',
+      description: "Find rides within your own Campus.",
+      image: 'assets/imgs/undraw_city_driver_jh2h.svg',
     },
     {
-      title: "What is The App?",
-      description: "Description",
-      image: 'assets/imgs/ica-slidebox-img-2.png',
+      title: "Cost Effective",
+      description: "Direct interaction with the vehicle owner",
+      image: 'assets/imgs/undraw_savings_hjfl.svg',
     },
     {
-      title: "Some Feature",
-      description: "Feature description",
-      image: 'assets/imgs/ica-slidebox-img-3.png',
+      title: "Socialize",
+      description: "Meet new people from your own organization while you travel.",
+      image: 'assets/imgs/undraw_hang_out_h9ud.svg',
+    },
+    {
+      title: "Notifications",
+      description: "Get notified when rides available",
+      image: 'assets/imgs/undraw_mail_2_tqip.svg',
     }
   ];
 
@@ -72,10 +77,10 @@ export class IntroPage {
     loading.present();
 
     this.authService.googleLogin()
-      .then(() => {
-        loading.dismiss();
-        this.startApp();
-      });
+    .then(() => {
+      loading.dismiss();
+      this.startApp();
+    });
   }
   
 

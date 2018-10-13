@@ -15,11 +15,12 @@
       <p [innerHTML]="slide.description"></p>
     </ion-slide>
     <ion-slide>
-      <img src="assets/imgs/ica-slidebox-img-4.png" class="slide-image" />
-      <h2 class="slide-title">{{ 'Sign Up to Get Started'  }}</h2>
-      <button ion-button icon-end large clear (click)="googleLogin()">
-        {{ 'Sign in With Google'  }}
-        <ion-icon name="arrow-forward"></ion-icon>
+      <img class="slide-image" src="assets/imgs/undraw_login_jdch.svg" class="slide-image" />
+      <h2 class="slide-title">{{ 'Look for Rides now'  }}</h2>
+      <p>Sign Up to Get Started.</p>
+      <button ion-button color="danger" round icon-start>
+        <ion-icon name='logo-google' is-active="false"></ion-icon>
+        Google
       </button>
     </ion-slide>
   </ion-slides>
