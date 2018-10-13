@@ -39,30 +39,18 @@ export class AuthServiceProvider {
         'offline': true,
       })
       .then((user)=> {
-        this.nativeStorage.setItem('user', {
-          uid: user.uid,
-          name: user.displayName,
-          email: user.email,
-          picture: user.imageUrl
-        });
-        this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken));
-        let db = firebase.firestore();
-        db.collection("users").add({
-          id: user.uid,
-          name: user.displayName,
-          email: user.email,
-          phone: user.phoneNumber,
-          image: user.photoURL,
-          preferences: [],
-          department: "",
-          circle: "",
-        }).then((data)=>{
-          alert("Done")
-        }).catch((err)=>{
-          console.log(err)
-          alert(err)
-        });
-      });  
+        this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken))
+          .then((userx) => {
+            this.nativeStorage.setItem('user', {
+              uid: userx.uid,
+              name: userx.displayName,
+              email: userx.email,
+              image: userx.photoURL,
+            });
+
+            this.RegisterUser(userx);
+          });
+      });
     } catch(err) {
       console.log(err)
     }
@@ -73,20 +61,7 @@ export class AuthServiceProvider {
       const provider = new firebase.auth.GoogleAuthProvider();
       let credentials = await this.afAuth.auth.signInWithPopup(provider);
       let user = credentials.user;
-      this.usersCollection.add({
-        id: user.uid,
-        name: user.displayName,
-        email: user.email,
-        phone: user.phoneNumber,
-        image: user.photoURL,
-        preferences: [],
-        department: "",
-        circle: "",
-      }).then((data)=>{
-        console.log(data)
-      }).catch((err)=>{
-        console.log(err)
-      });
+      this.RegisterUser(user);
     } catch(err) {
       console.log(err)
     }
@@ -105,4 +80,22 @@ export class AuthServiceProvider {
     this.afAuth.auth.signOut();
   }
 
+  RegisterUser(user){
+    console.log(user);
+    this.usersCollection.add({
+      id: user.uid,
+      name: user.displayName,
+      email: user.email,
+      phone: user.phoneNumber,
+      timeStamp: new Date(),
+      image: user.photoURL,
+      preferences: [],
+      department: "",
+      circle: "",
+    }).then((data)=>{
+      console.log(data)
+    }).catch((err)=>{
+      console.log(err)
+    });
+  }
 }
