@@ -3,10 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { GooglePlus } from '@ionic-native/google-plus';
-import { Platform } from 'ionic-angular';
 import firebase from 'firebase';
-
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the IntroPage page.
@@ -27,26 +26,31 @@ export class IntroPage {
   slides = [
     {
       title: "Welcome to Dérive",
-      description: "Description",
-      image: 'assets/imgs/ica-slidebox-img-1.png',
+      description: "Find rides within your own Campus.",
+      image: 'assets/imgs/undraw_city_driver_jh2h.svg',
     },
     {
-      title: "What is The App?",
-      description: "Description",
-      image: 'assets/imgs/ica-slidebox-img-2.png',
+      title: "Cost Effective",
+      description: "Direct interaction with the vehicle owner",
+      image: 'assets/imgs/undraw_savings_hjfl.svg',
     },
     {
-      title: "Some Feature",
-      description: "Feature description",
-      image: 'assets/imgs/ica-slidebox-img-3.png',
+      title: "Socialize",
+      description: "Meet new people from your own organization while you travel.",
+      image: 'assets/imgs/undraw_hang_out_h9ud.svg',
+    },
+    {
+      title: "Notifications",
+      description: "Get notified when rides available",
+      image: 'assets/imgs/undraw_mail_2_tqip.svg',
     }
   ];
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private afAuth: AngularFireAuth,
-    private gplus: GooglePlus,
-    private platform: Platform) {
+    public authService: AuthServiceProvider,
+    public loadingCtrl: LoadingController) {
       this.user = this.afAuth.authState;
   }
 
@@ -65,46 +69,19 @@ export class IntroPage {
     console.log('ionViewDidLoad IntroPage');
   }
 
-  async nativeGoogleLogin(): Promise<firebase.User> {
-    try {
-  
-      const gplusUser = await this.gplus.login({
-        'webClientId': '46695463328-5bl5gr5jgr1did2vq3im8sv8jqlp0sq2.apps.googleusercontent.com',
-        'offline': true,
-      })
-  
-      return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
-  
-    } catch(err) {
-      console.log(err)
-    }
-  }
-
-  async webGoogleLogin(): Promise<void> {
-    try {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      const credential = await this.afAuth.auth.signInWithPopup(provider);
-      console.log(credential);
-    } catch(err) {
-      console.log(err)
-    }
-  
-  }
-
   googleLogin() {
-    if (this.platform.is('cordova')) {
-      this.nativeGoogleLogin();
-    } else {
-      this.webGoogleLogin();
-    }
-    this.navCtrl.setRoot(HomePage, {}, {
-      animate: true,
-      direction: 'forward'
+    let loading = this.loadingCtrl.create({
+      content: 'Logging In',
+    });
+
+    loading.present();
+
+    this.authService.googleLogin()
+    .then(() => {
+      loading.dismiss();
+      this.startApp();
     });
   }
   
-  signOut() {
-    this.afAuth.auth.signOut();
-  }
 
 }

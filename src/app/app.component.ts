@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IntroPage } from '../pages/intro/intro';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { GooglePlus } from '@ionic-native/google-plus';
-import firbase from 'firebase';
 import { HomePage } from '../pages/home/home';
 
 
@@ -26,49 +25,15 @@ export class MyApp {
     statusBar.backgroundColorByHexString('#ffffff');
 
     platform.ready().then(() => {
-      // this.nativeStorage.getItem('user')
-      // .then((data)=> {
-      //   this.rootPage = HomePage;
-      //   splashScreen.hide();
-      // },(error)=> {
-      //   this.GoogleLogin();
-      // });
-      this.startApp();
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }
-
-  startApp(){
-    if(this.ifUserSignedIn()){
-      this.rootPage = HomePage;
-    }else{
-      this.rootPage = IntroPage;
-    }
-  }
-  // To be modified in future, for now returning static value
-  ifUserSignedIn(){
-    return false;
-  }
-
-  GoogleLogin(){
-    this.googlePlus.login({
-      'webClientId': '46695463328-5bl5gr5jgr1did2vq3im8sv8jqlp0sq2.apps.googleusercontent.com',
-      'offline': true
-    })
-    .then((user)=> {
-      this.rootPage = HomePage;
-      this.nativeStorage.setItem('user', {
-        name: user.displayName,
-        email: user.email,
-        picture: user.imageUrl
-      })
-      .then(()=>{
-        this.splashScreen.hide();
-      }, function (error) {
+      this.nativeStorage.getItem('user')
+      .then((data)=> {
         this.rootPage = HomePage;
-        console.log(error);
-      })
+        splashScreen.hide();
+      },(error)=> {
+        this.rootPage = IntroPage;
+        splashScreen.hide();
+      });
+      statusBar.styleDefault();
     });
   }
 }
