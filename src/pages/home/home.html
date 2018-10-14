@@ -1,131 +1,59 @@
-<!-- User would come here after logged in -->
-<!-- Tab Component for naviagting to respective page -->
-<ion-header>
-  <ion-toolbar>
-    <ion-title style="margin-bottom:20px">Header</ion-title>
-    <ion-segment [(ngModel)]="icons" color="secondary">
-      <ion-segment-button value="camera">
-        <ion-icon name="camera"></ion-icon>
-      </ion-segment-button>
-      <ion-segment-button value="bookmark">
-        <ion-icon name="bookmark"></ion-icon>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-</ion-header>
+<ion-tabs color="dark">
+  <ion-tab tabIcon="compass" tabBadge="2" tabTitle="Find" [root]="posts"></ion-tab>
+  <ion-tab tabIcon="add-circle" tabTitle="Offer" [root]="offer"></ion-tab>
+  <ion-tab tabIcon="chatboxes" tabBadge="3" tabTitle="Inbox" [root]="inbox"></ion-tab>
+</ion-tabs>
 
-<ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-card>
-        <img src="../../assets/imgs/advance-card-map-madison.png">
-        <ion-fab right top>
-          <button ion-fab>
-            <ion-icon name="pin"></ion-icon>
-          </button>
-        </ion-fab>
-
-        <ion-item>
-          <ion-icon name="bicycle" item-start large></ion-icon>
-          <h2>Phase3</h2>
-          <p>Posted By: Raj</p>
-        </ion-item>
-
-        <ion-item>
-          <ion-icon name="timer" item-start large></ion-icon>
-          <h2>Date: 15 Oct 2018</h2>
-          <p>1 Seat Available</p>
-        </ion-item>
-
-        <ion-item>
-            <button ion-button icon-start clear item-end>
-              <ion-icon name="list-box"></ion-icon>
-                Details
-            </button>
-          <button ion-button icon-start clear item-end>
-            <ion-icon name="call"></ion-icon>
-            Contact
-          </button>
-        </ion-item>
-      </ion-card>
-      <ion-card>
-          <img src="../../assets/imgs/advance-card-map-madison.png">
-          <ion-fab right top>
-            <button ion-fab>
-              <ion-icon name="pin"></ion-icon>
-            </button>
-          </ion-fab>
-  
-          <ion-item>
-            <ion-icon name="walk" item-start large></ion-icon>
-            <h2>Udhyog Vihar</h2>
-            <p>Posted By: Prashant</p>
-          </ion-item>
-  
-          <ion-item>
-            <ion-icon name="timer" item-start large></ion-icon>
-            <h2>Date: 17 Oct 2018</h2>
-            <p></p>
-          </ion-item>
-  
-          <ion-item>
-              <button ion-button icon-start clear item-start>
-                <ion-icon name="list-box"></ion-icon>
-                  Details
-              </button>
-            <button ion-button icon-start clear item-end>
-              <ion-icon name="call"></ion-icon>
-                Contact
-            </button>
-          </ion-item>
-        </ion-card>
-        <ion-card>
-            <img src="../../assets/imgs/advance-card-map-madison.png">
-            <ion-fab right top>
-              <button ion-fab>
-                <ion-icon name="pin"></ion-icon>
-              </button>
-            </ion-fab>
-    
-            <ion-item>
-              <ion-icon name="car" item-start large></ion-icon>
-              <h2>Andhra Pradesh</h2>
-              <p>Posted By: Teja</p>
-            </ion-item>
-    
-            <ion-item>
-              <ion-icon name="timer" item-start large></ion-icon>
-              <h2>Open Indefinitely</h2>
-              <p>3 Seat Available</p>
-            </ion-item>
-    
-            <ion-item>
-                <button ion-button icon-start clear item-end>
-                  <ion-icon name="list-box"></ion-icon>
-                    Details
-                </button>
-              <button ion-button icon-start clear item-end>
-                <ion-icon name="call"></ion-icon>
-                Contact
-              </button>
-            </ion-item>
-          </ion-card>
-    </ion-item>
-  </ion-list>
-</ion-content>
-
-<ion-menu [content]="mycontent">
+<ion-menu [content]="content">
+  <!-- <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
   <ion-content>
     <ion-list>
-      <p>some menu content, could be list items</p>
-    </ion-list>
-    <ion-list>
-      <button (click)="signOut()" ion-button icon-start clear item-end>
-        <ion-icon name="list-box"></ion-icon>
-          Sign Out
-      </button>
+      <div style="display:flex; justify-content:center;align-items:center">
+        <img style="max-width:70%" padding [src]="image">
+      </div>
+      <ion-item>
+        <div item-start>
+          <ion-icon class="listIcon" name="person"></ion-icon>
+        </div>
+        <h3>{{username}}</h3>
+        <p>{{email}}</p>
+      </ion-item>
+      <ion-item>
+        <div item-start>
+          <ion-icon class="listIcon" name="notifications"></ion-icon>
+        </div>
+        <h2>Notifications</h2>
+      </ion-item>
+      <ion-item>
+        <div item-start>
+          <ion-icon class="listIcon" name="time"></ion-icon>
+        </div>
+        <h2>History</h2>
+      </ion-item>
+      <ion-item>
+        <div item-start>
+          <ion-icon class="listIcon" name="settings"></ion-icon>
+        </div>
+        <h2>Settings</h2>
+      </ion-item>
+      <ion-item (click)="logOut()">
+        <div item-start>
+          <ion-icon class="listIcon" name="log-out"></ion-icon>
+        </div>
+        <h2>Log-Out</h2>
+      </ion-item>
+      <ion-item>
+        <div item-start>
+          <ion-icon class="listIcon" name="information-circle"></ion-icon>
+        </div>
+        <h2>About</h2>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
 
-<ion-nav #mycontent [root]="rootPage"></ion-nav>
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>

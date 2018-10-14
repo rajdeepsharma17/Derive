@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { SettingsPage } from '../settings/settings';
 
 /**
- * Generated class for the DashBoardPage page.
+ * Generated class for the InboxPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,19 +10,16 @@ import { SettingsPage } from '../settings/settings';
 
 @IonicPage()
 @Component({
-  selector: 'page-dash-board',
-  templateUrl: 'dash-board.html',
+  selector: 'page-inbox',
+  templateUrl: 'inbox.html',
 })
-export class DashBoardPage {
+export class InboxPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DashBoardPage');
-  }
-  openSettings(){
-    this.navCtrl.push(SettingsPage)
+    console.log('ionViewDidLoad InboxPage');
   }
 
 }
