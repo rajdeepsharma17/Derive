@@ -1,34 +1,59 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Dickso</ion-title>
-    <div padding>
-      <ion-segment [(ngModel)]="main">
-        <ion-segment-button value="following">
-          Following
-        </ion-segment-button>
-        <ion-segment-button value="posts">
-          Posts
-        </ion-segment-button>
-        <ion-segment-button value="chats">
-          Messages
-        </ion-segment-button>
-      </ion-segment>
-    </div>
-  </ion-navbar>
-</ion-header>
+<ion-tabs color="dark">
+  <ion-tab tabIcon="compass" tabBadge="2" tabTitle="Find" [root]="posts"></ion-tab>
+  <ion-tab tabIcon="add-circle" tabTitle="Offer" [root]="offer"></ion-tab>
+  <ion-tab tabIcon="chatboxes" tabBadge="3" tabTitle="Inbox" [root]="inbox"></ion-tab>
+</ion-tabs>
 
-<ion-content>
-  <div [ngSwitch]="main">
-    <ng-container *ngSwitchCase="'following'">
-      <page-post></page-post>
-    </ng-container>
-    <div *ngSwitchCase="'posts'">
-      <!-- <page-post></page-post> -->
-      <p>2</p>
-    </div>
-    <div *ngSwitchCase="'chats'">
-      <!-- <page-post></page-post> -->
-      <p>3</p>
-    </div>
-  </div>
-</ion-content>
+<ion-menu [content]="content">
+  <!-- <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+  <ion-content>
+    <ion-list>
+      <div style="display:flex; justify-content:center;align-items:center">
+        <img style="max-width:70%" padding [src]="image">
+      </div>
+      <ion-item>
+        <div item-start>
+          <ion-icon class="listIcon" name="person"></ion-icon>
+        </div>
+        <h3>{{username}}</h3>
+        <p>{{email}}</p>
+      </ion-item>
+      <ion-item>
+        <div item-start>
+          <ion-icon class="listIcon" name="notifications"></ion-icon>
+        </div>
+        <h2>Notifications</h2>
+      </ion-item>
+      <ion-item>
+        <div item-start>
+          <ion-icon class="listIcon" name="time"></ion-icon>
+        </div>
+        <h2>History</h2>
+      </ion-item>
+      <ion-item>
+        <div item-start>
+          <ion-icon class="listIcon" name="settings"></ion-icon>
+        </div>
+        <h2>Settings</h2>
+      </ion-item>
+      <ion-item (click)="logOut()">
+        <div item-start>
+          <ion-icon class="listIcon" name="log-out"></ion-icon>
+        </div>
+        <h2>Log-Out</h2>
+      </ion-item>
+      <ion-item>
+        <div item-start>
+          <ion-icon class="listIcon" name="information-circle"></ion-icon>
+        </div>
+        <h2>About</h2>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>

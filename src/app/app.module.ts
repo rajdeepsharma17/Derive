@@ -14,6 +14,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { PostPage } from '../pages/post/post';
+import { InboxPage } from '../pages/inbox/inbox';
+import { OfferPage } from '../pages/offer/offer';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxesZjFy_sGzQMthXBB3vnHNOqrlegBDE",
@@ -31,7 +33,9 @@ firbase.initializeApp(firebaseConfig);
     MyApp,
     HomePage,
     IntroPage,
-    PostPage
+    PostPage,
+    InboxPage,
+    OfferPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ firbase.initializeApp(firebaseConfig);
     MyApp,
     HomePage,
     IntroPage,
-    PostPage
+    PostPage,
+    InboxPage,
+    OfferPage
   ],
   providers: [
     StatusBar,
