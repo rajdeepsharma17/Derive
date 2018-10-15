@@ -41,7 +41,7 @@
         </div>
         <h2>Log-Out</h2>
       </ion-item>
-      <ion-item menuClose>
+      <ion-item menuClose (click)="openAbout()">
         <div item-start>
           <ion-icon class="listIcon" name="information-circle"></ion-icon>
         </div>
@@ -67,8 +67,10 @@
       <button style="color:grey" (click)="search()" ion-button icon-only>
         <ion-icon name="search"></ion-icon>
       </button>
-      <button style="color:grey" (click)="goToNotifications()" ion-button icon-only>
-        <ion-icon name="notifications"></ion-icon>
+      <button style="color:grey" (click)="presentModal()" ion-button icon-only>
+        <ion-icon name="notifications">
+            <ion-badge id="notifications-badge" color="danger">2</ion-badge>
+        </ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>

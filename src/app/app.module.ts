@@ -19,6 +19,8 @@ import { OfferPage } from '../pages/offer/offer';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { HistoryPage } from '../pages/history/history';
 import { SettingsPage } from '../pages/settings/settings';
+import { DocumentViewer } from '@ionic-native/document-viewer';
+import { AboutPage } from '../pages/about/about';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxesZjFy_sGzQMthXBB3vnHNOqrlegBDE",
@@ -41,7 +43,8 @@ firbase.initializeApp(firebaseConfig);
     OfferPage,
     NotificationsPage,
     HistoryPage,
-    SettingsPage
+    SettingsPage,
+    AboutPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ firbase.initializeApp(firebaseConfig);
     OfferPage,
     NotificationsPage,
     HistoryPage,
-    SettingsPage
+    SettingsPage,
+    AboutPage
   ],
   providers: [
     StatusBar,
@@ -68,7 +72,8 @@ firbase.initializeApp(firebaseConfig);
     AngularFireAuth,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GooglePlus,
-    AuthServiceProvider
+    AuthServiceProvider,
+    DocumentViewer
   ]
 })
 export class AppModule {}

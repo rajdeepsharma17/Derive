@@ -1,3 +1,9 @@
 page-history {
-
+    .scroll-content{
+        display: flex !important;
+        margin: 0px !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
 }
