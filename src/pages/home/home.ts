@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform, LoadingController } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController } from 'ionic-angular';
@@ -16,7 +16,8 @@ export class HomePage {
 
 
   constructor(public navCtrl: NavController, private nativeStorage: NativeStorage, private platform: Platform, private afAuth: AngularFireAuth,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController) {
   }
 
   ngOnInit() {
@@ -31,6 +32,8 @@ export class HomePage {
           },
           error => console.error(error)
         );
+    }else{
+      this.presentToast();
     }
   }
 
@@ -49,11 +52,18 @@ export class HomePage {
   }
 
   logOut() {
-    this.nativeStorage.remove('user');
-    this.afAuth.auth.signOut();
-    this.username = 'Username';
-    this.email = 'example@abc.com';
-    this.image = 'assets/imgs/undraw_profile_pic_ic5t.svg'
+    let loading = this.loadingCtrl.create({
+      content: 'Logging Out',
+    });
+    loading.present();
+    setTimeout(()=>{
+      this.nativeStorage.remove('user');
+      this.afAuth.auth.signOut();
+      this.username = 'Username';
+      this.email = 'example@abc.com';
+      this.image = 'assets/imgs/undraw_profile_pic_ic5t.svg'
+      loading.dismiss();
+    },1500)
   }
 
 }
