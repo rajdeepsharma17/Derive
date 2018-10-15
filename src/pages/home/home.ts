@@ -4,6 +4,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
+import { HistoryPage } from '../history/history';
 
 @Component({
   selector: 'page-home',
@@ -64,6 +65,11 @@ export class HomePage {
       this.email = 'example@abc.com';
       this.image = 'assets/imgs/undraw_profile_pic_ic5t.svg'
       loading.dismiss();
+      const toast = this.toastCtrl.create({
+        message: 'Logged Out',
+        duration: 1500
+      });
+      toast.present();
     },1500)
   }
 
@@ -77,6 +83,10 @@ export class HomePage {
 
   search(){
     
+  }
+
+  goToHistory(){
+    this.navCtrl.push(HistoryPage);
   }
 
 }

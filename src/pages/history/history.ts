@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the HistoryPage page.
@@ -15,11 +15,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HistoryPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public loadingCtrl: LoadingController,
+    public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HistoryPage');
+  }
+
+  clearHistory(){
+    let loading = this.loadingCtrl.create({
+      content: 'Cleaning History',
+    });
+    loading.present();
+    setTimeout(()=>{
+      loading.dismiss();
+      this.presentToast();
+    },2000)
+  }
+
+  presentToast() {
+    let msg = 'History Cleared';
+    const toast = this.toastCtrl.create({
+      message: msg,
+      duration: 1500
+    });
+    toast.present();
   }
 
 }
