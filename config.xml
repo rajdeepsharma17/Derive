@@ -87,5 +87,5 @@
         <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
     </plugin>
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
-    <engine name="android" spec="^7.1.1" />
+    <engine name="android" spec="7.1.1" />
 </widget>
