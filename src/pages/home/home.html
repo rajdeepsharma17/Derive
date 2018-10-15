@@ -86,12 +86,12 @@
       <page-offer></page-offer>
     </ion-list>
 
-    <ion-list *ngSwitchCase="'posts'">
+    <div class="cards-bg" *ngSwitchCase="'posts'">
       <page-post></page-post>
-    </ion-list>
+    </div>
 
-    <ion-list *ngSwitchCase="'inbox'">
+    <div *ngSwitchCase="'inbox'">
       <page-inbox></page-inbox>
-    </ion-list>
+    </div>
   </div>
 </ion-content>

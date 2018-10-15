@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { ToastController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -14,8 +15,8 @@ export class HomePage {
   defaultTab: string = 'posts';
 
 
-  constructor(public navCtrl: NavController, private nativeStorage: NativeStorage, private platform: Platform, private afAuth: AngularFireAuth) {
-
+  constructor(public navCtrl: NavController, private nativeStorage: NativeStorage, private platform: Platform, private afAuth: AngularFireAuth,
+    public toastCtrl: ToastController) {
   }
 
   ngOnInit() {
@@ -26,10 +27,25 @@ export class HomePage {
             this.username = data.name;
             this.email = data.email;
             // this.image = data.photoURL
+            this.presentToast();
           },
           error => console.error(error)
         );
     }
+  }
+
+  presentToast() {
+    let msg;
+    if (this.platform.is('cordova')) {
+      msg = "Logged in as " + this.username + " successfully."
+    }else{
+      msg = 'Logged in successfully.';
+    }
+    const toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000
+    });
+    toast.present();
   }
 
   logOut() {
