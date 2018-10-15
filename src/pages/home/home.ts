@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, LoadingController } from 'ionic-angular';
+import { NavController, Platform, LoadingController, ModalController } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
 import { HistoryPage } from '../history/history';
 import { AboutPage } from '../about/about';
+import { NotificationsPage } from '../notifications/notifications';
 
 @Component({
   selector: 'page-home',
@@ -21,7 +22,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, private nativeStorage: NativeStorage, private platform: Platform, private afAuth: AngularFireAuth,
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
-    ) {
+    public modalCtrl: ModalController) {
   }
 
   ngOnInit() {
@@ -79,10 +80,6 @@ export class HomePage {
     this.navCtrl.push(SettingsPage);
   }
 
-  goToNotifications(){
-    
-  }
-
   search(){
     
   }
@@ -93,6 +90,11 @@ export class HomePage {
 
   openAbout(){
     this.navCtrl.push(AboutPage);
+  }
+
+  presentModal() {
+    const modal = this.modalCtrl.create(NotificationsPage);
+    modal.present();
   }
 
 }
