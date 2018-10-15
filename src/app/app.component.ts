@@ -30,7 +30,7 @@ export class MyApp {
         this.rootPage = HomePage;
         splashScreen.hide();
       },(error)=> {
-        this.rootPage = HomePage;
+        this.rootPage = IntroPage;
         splashScreen.hide();
       });
       statusBar.styleDefault();

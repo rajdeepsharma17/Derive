@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
 import { HistoryPage } from '../history/history';
+import { AboutPage } from '../about/about';
 
 @Component({
   selector: 'page-home',
@@ -19,7 +20,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private nativeStorage: NativeStorage, private platform: Platform, private afAuth: AngularFireAuth,
     public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    ) {
   }
 
   ngOnInit() {
@@ -87,6 +89,10 @@ export class HomePage {
 
   goToHistory(){
     this.navCtrl.push(HistoryPage);
+  }
+
+  openAbout(){
+    this.navCtrl.push(AboutPage);
   }
 
 }
