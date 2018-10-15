@@ -1,3 +1,10 @@
 page-post {
-
+    ion-card {
+        border: none !important;
+        width: 100% !important;
+        margin: 0px !important;
+      }
+    .cardActions{
+        margin-bottom: 10px !important
+    }  
 }

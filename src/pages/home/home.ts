@@ -71,4 +71,12 @@ export class HomePage {
     this.navCtrl.push(SettingsPage);
   }
 
+  goToNotifications(){
+    
+  }
+
+  search(){
+    
+  }
+
 }

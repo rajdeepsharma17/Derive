@@ -17,12 +17,12 @@
         <h3>{{username}}</h3>
         <p>{{email}}</p>
       </ion-item>
-      <ion-item menuClose>
+      <!-- <ion-item menuClose>
         <div item-start>
           <ion-icon class="listIcon" name="notifications"></ion-icon>
         </div>
         <h2>Notifications</h2>
-      </ion-item>
+      </ion-item> -->
       <ion-item menuClose>
         <div item-start>
           <ion-icon class="listIcon" name="time"></ion-icon>
@@ -56,13 +56,21 @@
 
 
 <ion-header>
-  <ion-navbar color="light" no-border-bottom>
+  <ion-navbar style="margin-bottom:5px" color="light" no-border-bottom>
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
     <ion-title>
       Dérive
     </ion-title>
+    <ion-buttons end>
+      <button style="color:grey" (click)="search()" ion-button icon-only>
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button style="color:grey" (click)="goToNotifications()" ion-button icon-only>
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
   <ion-toolbar color="light" no-border-top>
