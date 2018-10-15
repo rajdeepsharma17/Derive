@@ -17,31 +17,31 @@
         <h3>{{username}}</h3>
         <p>{{email}}</p>
       </ion-item>
-      <ion-item>
+      <!-- <ion-item menuClose>
         <div item-start>
           <ion-icon class="listIcon" name="notifications"></ion-icon>
         </div>
         <h2>Notifications</h2>
-      </ion-item>
-      <ion-item>
+      </ion-item> -->
+      <ion-item menuClose (click)="goToHistory()">
         <div item-start>
           <ion-icon class="listIcon" name="time"></ion-icon>
         </div>
         <h2>History</h2>
       </ion-item>
-      <ion-item>
+      <ion-item menuClose (click)="goToSettings()">
         <div item-start>
           <ion-icon class="listIcon" name="settings"></ion-icon>
         </div>
         <h2>Settings</h2>
       </ion-item>
-      <ion-item (click)="logOut()">
+      <ion-item menuClose (click)="logOut()">
         <div item-start>
           <ion-icon class="listIcon" name="log-out"></ion-icon>
         </div>
         <h2>Log-Out</h2>
       </ion-item>
-      <ion-item>
+      <ion-item menuClose>
         <div item-start>
           <ion-icon class="listIcon" name="information-circle"></ion-icon>
         </div>
@@ -56,13 +56,21 @@
 
 
 <ion-header>
-  <ion-navbar color="light" no-border-bottom>
+  <ion-navbar style="margin-bottom:5px" color="light" no-border-bottom>
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
     <ion-title>
       Dérive
     </ion-title>
+    <ion-buttons end>
+      <button style="color:grey" (click)="search()" ion-button icon-only>
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button style="color:grey" (click)="goToNotifications()" ion-button icon-only>
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
   <ion-toolbar color="light" no-border-top>
@@ -86,12 +94,12 @@
       <page-offer></page-offer>
     </ion-list>
 
-    <ion-list *ngSwitchCase="'posts'">
+    <div class="cards-bg" *ngSwitchCase="'posts'">
       <page-post></page-post>
-    </ion-list>
+    </div>
 
-    <ion-list *ngSwitchCase="'inbox'">
+    <div *ngSwitchCase="'inbox'">
       <page-inbox></page-inbox>
-    </ion-list>
+    </div>
   </div>
 </ion-content>

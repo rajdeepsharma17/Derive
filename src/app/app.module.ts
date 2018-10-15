@@ -16,6 +16,9 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { PostPage } from '../pages/post/post';
 import { InboxPage } from '../pages/inbox/inbox';
 import { OfferPage } from '../pages/offer/offer';
+import { NotificationsPage } from '../pages/notifications/notifications';
+import { HistoryPage } from '../pages/history/history';
+import { SettingsPage } from '../pages/settings/settings';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxesZjFy_sGzQMthXBB3vnHNOqrlegBDE",
@@ -35,7 +38,10 @@ firbase.initializeApp(firebaseConfig);
     IntroPage,
     PostPage,
     InboxPage,
-    OfferPage
+    OfferPage,
+    NotificationsPage,
+    HistoryPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +56,10 @@ firbase.initializeApp(firebaseConfig);
     IntroPage,
     PostPage,
     InboxPage,
-    OfferPage
+    OfferPage,
+    NotificationsPage,
+    HistoryPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,
