@@ -3,6 +3,7 @@ import { NavController, Platform, LoadingController } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController } from 'ionic-angular';
+import { SettingsPage } from '../settings/settings';
 
 @Component({
   selector: 'page-home',
@@ -64,6 +65,10 @@ export class HomePage {
       this.image = 'assets/imgs/undraw_profile_pic_ic5t.svg'
       loading.dismiss();
     },1500)
+  }
+
+  goToSettings(){
+    this.navCtrl.push(SettingsPage);
   }
 
 }
