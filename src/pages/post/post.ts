@@ -15,13 +15,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PostPage {
 
-  public elements = [
-    { no: 1 },
-    { no: 2 },
-    { no: 3 },
-    { no: 4 },
-  ];
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
